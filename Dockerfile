@@ -1,5 +1,5 @@
-FROM node:7.7-alpine
-MAINTAINER raul.requero@vizzuality.com
+FROM node:11.6-alpine
+MAINTAINER tiago.garcia@vizzuality.com
 
 ENV NAME node-skeleton
 ENV USER node-skeleton

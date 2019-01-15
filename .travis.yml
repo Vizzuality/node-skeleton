@@ -1,0 +1,31 @@
+language: node_js
+services:
+  - mongodb
+node_js:
+  - "11.6"
+cache:
+  directories:
+  - "node_modules"
+env:
+  global:
+    - CC_TEST_REPORTER_ID=f74635e7d81d445c2d5458b4fcfe28357becbc44ce9eaeb1b0392cfe3fcb3040
+    - NODE_ENV=test
+    - PORT=5037
+    - LOGGER_TYPE=console
+    - DEBUG=redis-cache-plugin
+    - NODE_PATH=app/src
+    - EXEC_MIGRATION=true
+    - JWT_SECRET=mysecret
+    - COOKIE_DOMAIN=mymachine
+    - SESSION_KEY=test
+    - PUBLIC_URL=http://tower.dev:5037
+    - SPARKPOST_KEY=fakeSparkpostKey
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+script:
+  - npm test
+  - npm run coverage
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT

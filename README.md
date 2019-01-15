@@ -34,3 +34,5 @@ It is necessary to define these environment variables:
 
 * CT_URL => Control Tower URL
 * NODE_ENV => Environment (prod, staging, dev)
+
+To do so, you can copy `dev.env.sample` to `dev.env` and set the appropriate values.
