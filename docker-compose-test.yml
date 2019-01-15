@@ -1,10 +1,15 @@
-test:
-  extends:
-    file: base.yml
-    service: base
-  container_name: node-skeleton-test
-  environment:
-    NODE_ENV: test
-    CT_URL: http://mymachine:9000
-    API_VERSION: v1
-  command: test
+version: "3"
+services:
+  test:
+    build: .
+    ports:
+      - "3005:3005"
+    container_name: node-skeleton-test
+    env_file:
+      - dev.env
+    environment:
+      PORT: 3005
+      NODE_ENV: test
+      API_VERSION: v1
+      CT_TOKEN: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im1pY3Jvc2VydmljZSIsImNyZWF0ZWRBdCI6IjIwMTYtMDktMTQifQ.IRCIRm1nfIQTfda_Wb6Pg-341zhV8soAgzw7dd5HxxQ
+    command: test
